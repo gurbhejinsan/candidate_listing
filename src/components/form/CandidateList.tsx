@@ -70,7 +70,7 @@ const CandidateList = () => {
                       </td>
                     </tr>
                   </PopoverTrigger>
-                  <PopoverContent className="w-[17rem] " align="start">
+                  <PopoverContent className="w-[21rem] " align="start">
                     <div className="border-b border-slate-800 pb-2">
                       <PopoverClose
                         className="PopoverClose float-end   mb-2 text-gray-500 "

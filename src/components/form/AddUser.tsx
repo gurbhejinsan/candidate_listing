@@ -17,7 +17,6 @@ import { InputGroup } from "../ui/input";
 
 const AddUserForm = () => {
   const form = useForm<IAddUser>();
-
   const {
     data: res,
     mutate,
@@ -32,9 +31,14 @@ const AddUserForm = () => {
     const data = form.getValues();
     mutate(data, {
       onSuccess: () => {
+        form.resetField("name");
         toast.success(res?.data.message);
       },
     });
+  };
+  const clearForm = () => {
+    form.resetField("name");
+    form.reset();
   };
   if (isError) toast.error(error.message);
   return (
@@ -48,8 +52,8 @@ const AddUserForm = () => {
           <CardContent>
             <form>
               <Form {...form}>
-                <div className="grid w-full items-center gap-2">
-                  <div className="grid grid-cols-2 gap-2">
+                <div className="grid w-full items-center gap-4">
+                  <div className="grid grid-cols-2 gap-4">
                     <InputGroup
                       name="name"
                       label="Full Name"
@@ -74,7 +78,7 @@ const AddUserForm = () => {
                     placeholder="Enter candidate Numer"
                   />
                   <DatePickerForm />
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-4">
                     <InputGroup
                       name="height"
                       type="number"
@@ -100,6 +104,13 @@ const AddUserForm = () => {
           </CardContent>
           <CardFooter className="flex-center w-full">
             <Button isLoading={isPending} className="w-full">
+              Submit
+            </Button>
+            <Button
+              type="button"
+              onClick={clearForm}
+              className="w-full"
+            >
               Submit
             </Button>
           </CardFooter>
