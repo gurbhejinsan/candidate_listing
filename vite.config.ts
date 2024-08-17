@@ -9,7 +9,7 @@ export default defineConfig({
     outDir:'dist',
 
   },
-  base:"/candidate_listing",
+  base:"./",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
