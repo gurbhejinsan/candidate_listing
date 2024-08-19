@@ -31,13 +31,21 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputProps>(
     const { control } = useFormContext();
     return (
       <FormField
-        {...{ name, control }}
-        render={({ field: { onChange } }) => (
+        name={name}
+        control={control}
+        // {...{ name, control }}
+        render={({ field }) => (
           <FormItem className="flex flex-col">
             {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
             <div className="flex flex-col ">
               <Input
-                {...{ id: name, name, ref, placeholder, onChange }}
+                {...field}
+                {...{
+                  id: name,
+                  name,
+                  ref,
+                  placeholder,
+                }}
                 {...props}
               />
             </div>

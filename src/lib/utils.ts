@@ -12,9 +12,26 @@ export function formatDateToDDMMYYYY(date: Date | undefined) {
   const month = String(newDate.getMonth() + 1).padStart(2, "0"); // Months are zero-based in JavaScript
   const year = newDate.getFullYear();
   if (typeof date == "string") {
-    console.log('condition 1....');
-    
+    console.log("condition 1....");
+
     return { formatted: date };
   }
   return { formatted: `${day}/${month}/${year}`, date };
+}
+
+export function AgeCal(dateOfBirth: Date | undefined) {
+  if (dateOfBirth) {
+    const today = new Date();
+    const birthDate = new Date(dateOfBirth);
+    let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    const dayDifference = today.getDate() - birthDate.getDate();
+
+    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+      calculatedAge--;
+    }
+    return calculatedAge;
+  } else {
+    return "NA";
+  }
 }

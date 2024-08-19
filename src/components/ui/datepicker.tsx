@@ -3,7 +3,7 @@
 import { CalendarIcon, X } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
-import { cn, formatDateToDDMMYYYY } from "../../lib/utils";
+import { AgeCal, cn, formatDateToDDMMYYYY } from "../../lib/utils";
 import { Button } from "./button";
 import { Calendar } from "./calendar";
 import {
@@ -22,7 +22,7 @@ import {
 import { useState } from "react";
 
 export function DatePickerForm() {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -69,8 +69,8 @@ export function DatePickerForm() {
                 mode="single"
                 selected={field.value}
                 onSelect={(e) => {
-
                   field.onChange(formatDateToDDMMYYYY(e)?.formatted);
+                  setValue("age", AgeCal(e));
                   setIsOpen(false);
                 }}
                 disabled={(date) =>

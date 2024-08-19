@@ -1,12 +1,15 @@
+import { Card } from "./card";
 
 const Loader = () => {
   return (
-    <div className="newtons-cradle">
-      <div className="newtons-cradle__dot"></div>
-      <div className="newtons-cradle__dot"></div>
-      <div className="newtons-cradle__dot"></div>
-      <div className="newtons-cradle__dot"></div>
-    </div>
+    <Card className="h-5/6 w-full absolute   flex-center  ">
+      <div className="newtons-cradle">
+        <div className="newtons-cradle__dot"></div>
+        <div className="newtons-cradle__dot"></div>
+        <div className="newtons-cradle__dot"></div>
+        <div className="newtons-cradle__dot"></div>
+      </div>
+    </Card>
   );
 };
 

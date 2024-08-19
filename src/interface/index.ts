@@ -5,7 +5,10 @@ export type Response<O> = Promise<AxiosResponse<O, unknown>>;
 // Request data Types
 export type IUserList = {
   adhar_no: string;
-  dob:  Date | undefined;
+  dob: Date | undefined;
+  age?: number | undefined;
+  bmi?: number;
+  pft?: number;
   id: number;
   name: string;
   remark: string;
@@ -13,6 +16,16 @@ export type IUserList = {
   weight: string;
   mobile_no: string;
   height: string;
+};
+
+export type IUserDetailsPerDay = Pick<
+  IUserList,
+  "height" | "weight" | "remark" | "bmi" | "pft"
+> & {
+  rest_puls: number;
+  work_puls: number;
+  end_puls: number;
+  select?: number;
 };
 
 export type IAddUser = Pick<
@@ -27,14 +40,12 @@ export type IAddUser = Pick<
   | "weight"
 >;
 
-
 // respose data type
 
 interface CommanRes {
-    success: boolean;
-    message: string;
-  }
-  
+  success: boolean;
+  message: string;
+}
 
 export interface IGetUsersRes extends CommanRes {
   data: IUserList[];
