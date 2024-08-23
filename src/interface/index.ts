@@ -26,6 +26,7 @@ export type IUserDetailsPerDay = Pick<
   work_puls: number;
   end_puls: number;
   select?: number;
+  type?: string;
 };
 
 export type IAddUser = Pick<

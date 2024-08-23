@@ -52,6 +52,7 @@ const Select = forwardRef<ReactSelectProps<IOption, false>, CommonProps>(
                 name,
                 onChange: (newValue) => {
                   onChange(newValue?.value);
+                  localStorage.setItem("selectedUser", String(newValue?.value));
                 },
                 inputId: id,
               }}

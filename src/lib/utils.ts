@@ -1,5 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { IUserList } from "../interface";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -35,3 +37,28 @@ export function AgeCal(dateOfBirth: Date | undefined) {
     return "NA";
   }
 }
+
+export const useStorageManges = () => {
+  const [users, setUsers] = useState<IUserList[] | null>(null);
+  const [SelectedUser, setSelectedUser] = useState<IUserList | null>(null);
+
+  const list = localStorage.getItem("list");
+  const selectedUserID = localStorage.getItem("selectedUser");
+
+  useEffect(() => {
+    if (list) {
+      const parsedUsers = JSON.parse(list) as IUserList[];
+      setUsers(parsedUsers);
+
+      if (selectedUserID) {
+        const user = parsedUsers[Number(selectedUserID)];
+        setSelectedUser(user || null);
+      }
+    }
+  }, [list, selectedUserID]);
+
+  return {
+    users,
+    SelectedUser,
+  };
+};

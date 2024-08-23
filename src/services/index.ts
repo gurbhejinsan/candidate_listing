@@ -5,7 +5,7 @@ import {
   IGetUsersRes,
   IUserDetailsPerDay,
   IUserList,
-  Response
+  Response,
 } from "../interface";
 const base_url = import.meta.env.VITE_BASE_URL;
 
@@ -32,8 +32,10 @@ export const AddUsers = async (data: IAddUser): Response<IAddUsersRes> => {
     throw error; // Ensure the error is thrown so useQuery can handle it
   }
 };
+
 export const PerDayRecord = async (
-  data: IUserDetailsPerDay & IUserList
+  data: IUserDetailsPerDay & Pick<IUserList, "id">
+
 ): Response<IAddUsersRes> => {
   const body = JSON.stringify(data);
 

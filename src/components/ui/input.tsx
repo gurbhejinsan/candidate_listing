@@ -7,6 +7,7 @@ import { FormField, FormItem, FormLabel, FormMessage } from "./form";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  parentsClass?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -26,8 +27,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 Input.displayName = "Input";
 
+
+
 const InputGroup = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, name = "", placeholder, ...props }, ref) => {
+  ({ label, name = "", placeholder, parentsClass, ...props }, ref) => {
     const { control } = useFormContext();
     return (
       <FormField
@@ -35,7 +38,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputProps>(
         control={control}
         // {...{ name, control }}
         render={({ field }) => (
-          <FormItem className="flex flex-col">
+          <FormItem className={cn("flex flex-col", parentsClass)}>
             {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
             <div className="flex flex-col ">
               <Input
